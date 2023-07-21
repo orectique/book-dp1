@@ -1,0 +1,134 @@
+Traceback (most recent call last):
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\orect\mambaforge\envs\pyFin\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+include("s_approx.jl")
+using LinearAlgebra, QuantEcon
+
+function create_rs_utility_model(;
+        n=180,      # size of state space
+        β=0.95,     # time discount factor
+        ρ=0.96,     # correlation coef in AR(1)
+        σ=0.1,      # volatility
+        θ=-1.0)     # risk aversion
+    mc = tauchen(n, ρ, σ, 0, 10)  # n_std = 10
+    x_vals, P = mc.state_values, mc.p 
+    r = x_vals      # special case u(c(x)) = x
+    return (; β, θ, ρ, σ, r, x_vals, P)
+end
+
+function K(v, model)
+    (; β, θ, ρ, σ, r, x_vals, P) = model
+    return r + (β/θ) * log.(P * (exp.(θ*v)))
+end
+
+function compute_rs_utility(model)
+    (; β, θ, ρ, σ, r, x_vals, P) = model
+    v_init = zeros(length(x_vals))
+    v_star = successive_approx(v -> K(v, model), 
+                               v_init, tolerance=1e-10)
+    return v_star
+end
+
+
+# Plots
+
+using PyPlot
+using LaTeXStrings
+PyPlot.matplotlib[:rc]("text", usetex=true) # allow tex rendering
+fontsize=16
+
+function plot_v(; savefig=false, 
+                  figname="../figures/rs_utility_1.pdf")
+
+    fig, ax = plt.subplots(figsize=(10, 5.2))
+    model = create_rs_utility_model()
+    (; β, θ, ρ, σ, r, x_vals, P) = model
+
+    a = 1/(1 - (ρ*β))
+    b = (β /(1 - β)) * (θ/2) * (a*σ)^2 
+    
+    v_star = compute_rs_utility(model)
+    v_star_a = a * x_vals .+ b
+    ax.plot(x_vals, v_star, lw=2, alpha=0.7, label="approximate fixed point")
+    ax.plot(x_vals, v_star_a, "k--", lw=2, alpha=0.7, label=L"v(x)=ax + b")
+    ax.set_xlabel(L"x", fontsize=fontsize)
+
+    ax.legend(frameon=false, fontsize=fontsize, loc="upper left")
+    plt.show()
+    if savefig
+        fig.savefig(figname)
+    end
+end
+
+
+
+
+function plot_multiple_v(; savefig=false, 
+                  figname="../figures/rs_utility_2.pdf")
+
+    fig, ax = plt.subplots(figsize=(10, 5.2))
+    σ_vals = 0.05, 0.1
+
+    for σ in σ_vals
+        model = create_rs_utility_model(σ=σ)
+        (; β, θ, r, x_vals, P) = model
+        v_star = compute_rs_utility(model)
+        ax.plot(x_vals, v_star, lw=2, alpha=0.7, label=L"\sigma="*"$σ")
+        ax.set_xlabel(L"x", fontsize=fontsize)
+        ax.set_ylabel(L"v(x)", fontsize=fontsize)
+    end
+
+    ax.legend(frameon=false, fontsize=fontsize, loc="upper left")
+    plt.show()
+    if savefig
+        fig.savefig(figname)
+    end
+end
+
+
+------------------
+
+
+SystemError: opening file "D:\\GitHub\\book-dp1\\juliabook\\outs\\s_approx.jl": No such file or directory
+
+Stacktrace:
+  [1] systemerror(p::String, errno::Int32; extrainfo::Nothing)
+    @ Base .\error.jl:176
+  [2] #systemerror#82
+    @ .\error.jl:175 [inlined]
+  [3] systemerror
+    @ .\error.jl:175 [inlined]
+  [4] open(fname::String; lock::Bool, read::Nothing, write::Nothing, create::Nothing, truncate::Nothing, append::Nothing)
+    @ Base .\iostream.jl:293
+  [5] open
+    @ .\iostream.jl:275 [inlined]
+  [6] open(f::Base.var"#418#419"{String}, args::String; kwargs::Base.Pairs{Symbol, Union{}, Tuple{}, NamedTuple{(), Tuple{}}})
+    @ Base .\io.jl:393
+  [7] open
+    @ .\io.jl:392 [inlined]
+  [8] read
+    @ .\io.jl:473 [inlined]
+  [9] _include(mapexpr::Function, mod::Module, _path::String)
+    @ Base .\loading.jl:1955
+ [10] include(fname::String)
+    @ Base.MainInclude .\client.jl:478
+ [11] top-level scope
+    @ In[1]:1
+
