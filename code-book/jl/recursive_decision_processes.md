@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## quantile_function.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 import Distributions.quantile, Distributions.DiscreteNonParametric
 
 "Compute the τ-th quantile of v(X) when X ∼ ϕ and v = sort(v)."
@@ -70,7 +69,6 @@ end
 ```
 ## quantile_js.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Job search with Markov wage draws and quantile preferences.
 

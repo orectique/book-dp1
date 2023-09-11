@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## inventory_sim.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using Distributions, IterTools, QuantEcon
 
 function create_inventory_model(; S=100,  # Order size
@@ -139,7 +138,6 @@ plot_hist(model; savefig=true)
 ```
 ## is_irreducible.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using QuantEcon
 P = [0.1 0.9;
      0.0 1.0]
@@ -149,7 +147,6 @@ print(is_irreducible(mc))
 ```
 ## laborer_sim.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 function create_laborer_model(; α=0.3, β=0.2)
     return (; α, β)
 end
@@ -190,7 +187,6 @@ function test_convergence(; k=10_000_000, p=0.5)
 ```
 ## markov_js.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Infinite-horizon job search with Markov wage draws.
 
@@ -312,7 +308,6 @@ plot_main(savefig=true)
 ```
 ## markov_js_with_sep.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Infinite-horizon job search with Markov wage draws and separation.
 

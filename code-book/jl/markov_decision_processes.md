@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## inventory_dp.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("s_approx.jl")
 using Distributions
 m(x) = max(x, 0)  # Convenience function
@@ -163,7 +162,6 @@ plot_ts(savefig=true)
 ```
 ## finite_opt_saving_0.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using QuantEcon, LinearAlgebra, IterTools
 
 function create_savings_model(; R=1.01, β=0.98, γ=2.5,  
@@ -211,7 +209,6 @@ end
 ```
 ## finite_opt_saving_1.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("finite_opt_saving_0.jl")
 
 "Compute a v-greedy policy."
@@ -259,7 +256,6 @@ end
 ```
 ## finite_opt_saving_2.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("s_approx.jl")
 include("finite_opt_saving_1.jl")
 
@@ -465,7 +461,6 @@ plot_lorenz(savefig=true)
 ```
 ## finite_lq.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using QuantEcon, LinearAlgebra, IterTools
 include("s_approx.jl")
 
@@ -707,7 +702,6 @@ plot_timing(savefig=true)
 ```
 ## firm_hiring.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using QuantEcon, LinearAlgebra, IterTools
 
 function create_hiring_model(; 
@@ -896,7 +890,6 @@ plot_growth(savefig=true)
 ```
 ## modified_opt_savings.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using QuantEcon, LinearAlgebra, IterTools
 
 function create_savings_model(; β=0.98, γ=2.5,  

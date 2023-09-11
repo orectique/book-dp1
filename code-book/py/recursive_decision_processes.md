@@ -28,7 +28,6 @@ kernelspec:
 
 ## quantile_function.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 from scipy.stats import rv_discrete
 import numpy as np
 
@@ -60,7 +59,6 @@ def quantile_test(τ):
 ```
 ## quantile_js.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 """
 Job search with Markov wage draws and quantile preferences.
 

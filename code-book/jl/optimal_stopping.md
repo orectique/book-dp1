@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## firm_exit.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Firm valuation with exit option.
 
@@ -153,7 +152,6 @@ plot_comparison(savefig=true)
 ```
 ## american_option.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Valuation for finite-horizon American call options in discrete time.
 

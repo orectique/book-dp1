@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## rs_utility.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("s_approx.jl")
 using LinearAlgebra, QuantEcon
 
@@ -131,7 +130,6 @@ plot_multiple_v(savefig=true)
 ```
 ## ez_utility.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Epstein--Zin utility: solving the recursion for a given consumption
 path.

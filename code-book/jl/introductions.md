@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## two_period_job_search.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Two period job search in the IID case.
 """
@@ -128,7 +127,6 @@ fig_v1(savefig=true)
 ```
 ## compute_spec_rad.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using LinearAlgebra                         
 ρ(A) = maximum(abs(λ) for λ in eigvals(A))  # Spectral radius
 A = [0.4 0.1;                               # Test with arbitrary A
@@ -138,7 +136,6 @@ print(ρ(A))
 ```
 ## power_series.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 using LinearAlgebra
 
 # Primitives
@@ -165,7 +162,6 @@ print(maximum(abs.(B_inverse - power_series(A))))
 ```
 ## s_approx.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Computes an approximate fixed point of a given operator T 
 via successive approximation.
@@ -205,7 +201,6 @@ end
 ```
 ## linear_iter.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("s_approx.jl")
 using LinearAlgebra
 
@@ -225,7 +220,6 @@ print(isapprox(u_star, u_star_approx, rtol=1e-5))
 ```
 ## linear_iter_fig.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 include("linear_iter.jl")
 using PyPlot
 
@@ -272,7 +266,6 @@ fig.savefig("figures/linear_iter_fig_1.pdf")
 ```
 ## iid_job_search.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 VFI approach to job search in the infinite-horizon IID case.
 

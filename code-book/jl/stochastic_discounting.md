@@ -36,7 +36,6 @@ pygui(:tk);
 
 ## plot_interest_rates.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 # Nominal interest rate from https://fred.stlouisfed.org/series/GS1
 # Real interest rate from https://fred.stlouisfed.org/series/WFII10
 #
@@ -71,7 +70,6 @@ plot_rates(df_real, savefig=true)
 ```
 ## pd_ratio.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Price-dividend ratio in a model with dividend and consumption growth.
 
@@ -145,7 +143,6 @@ plot_main(savefig=true)
 ```
 ## inventory_sdd.jl
 ```{code-cell} julia
-:tags: ["hide-input"]
 """
 Inventory management model with state-dependent discounting.  
 The discount factor takes the form β_t = Z_t, where (Z_t) is 

@@ -28,7 +28,6 @@ kernelspec:
 
 ## rs_utility.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 from quantecon import compute_fixed_point
 from quantecon.markov import tauchen
 
@@ -129,7 +128,6 @@ plot_multiple_v()
 ```
 ## ez_utility.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 """
 Epstein--Zin utility: solving the recursion for a given consumption
 path.

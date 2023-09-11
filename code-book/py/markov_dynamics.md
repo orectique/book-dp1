@@ -28,7 +28,6 @@ kernelspec:
 
 ## inventory_sim.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 import numpy as np
 from scipy.stats import geom
 from itertools import product
@@ -138,7 +137,6 @@ plot_hist(model)
 ```
 ## is_irreducible.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 from quantecon import MarkovChain
 import numpy as np
 
@@ -153,7 +151,6 @@ print(mc.is_irreducible)
 ```
 ## laborer_sim.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 import numpy as np
 from collections import namedtuple
 
@@ -196,7 +193,6 @@ def test_convergence(k=10_000_000, p=0.5):
 ```
 ## markov_js.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 """
 Infinite-horizon job search with Markov wage draws.
 
@@ -324,7 +320,6 @@ plot_main()
 ```
 ## markov_js_with_sep.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 """
 Infinite-horizon job search with Markov wage draws and separation.
 

@@ -28,7 +28,6 @@ kernelspec:
 
 ## lake.py
 ```{code-cell} python3
-:tags: ["hide-input"]
 import numpy as np
 
 α, λ, d, b = 0.01, 0.1, 0.02, 0.025
